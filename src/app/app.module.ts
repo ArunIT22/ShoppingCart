@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { TestComponent } from './test/test.component';
+import { SearchComponent } from './search/search.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,9 +17,12 @@ import { FooterComponent } from './footer/footer.component';
     ContainerComponent,
     NavComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    TestComponent,
+    SearchComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule
   ],

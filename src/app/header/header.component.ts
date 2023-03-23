@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  messageText: string = "You can Shop Mobiles and Tablets here";
+
+  logo: string = "/assets/shopping.jpg";
+
   constructor() { }
 
   ngOnInit(): void {

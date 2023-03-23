@@ -1,0 +1,35 @@
+<div>
+  {{ getText() }}
+</div>
+<h1>
+  {{ message }}
+</h1>
+
+<div [innerText]="divMsg"></div>
+
+<button class="btn btn-outline-success" [disabled]="isValid">Submit</button>
+<hr />
+<div class="row">
+  <label class="col-md-3 col-form-label">Enter the Product to Search</label>
+  <div class="col-md-5">
+    <input type="text" class="form-control" (input)="onInput($event)" />
+  </div>
+  <div class="col-md-2">
+    <button class="btn btn-primary" (click)="onSubmit()">Click Here</button>
+  </div>
+</div>
+<h2>{{ searchedText }}</h2>
+<hr />
+<!-- Style Binding -->
+<div [style]="divStyle">This is a Demo for Style Binding</div>
+
+<div [style]="isValid ? divStyle : divStyle2">
+  This is a Demo for Style Binding. Is Valid :{{ isValid }}
+</div>
+
+<!--Class Binding-->
+<div class="mt-4">
+  <div [className]="'blue'">This is Class Binding Demo</div>
+
+  <div [className]="text_BGColor">This is Class Binding Demo</div>
+</div>
