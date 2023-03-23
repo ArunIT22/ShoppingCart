@@ -1,4 +1,9 @@
-h1 {
+/* h1 {
   color: coral;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+} */
+
+.container {
+  margin: 0px auto;
+  width: 60%;
 }
