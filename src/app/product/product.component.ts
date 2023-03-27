@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-product',
@@ -21,5 +21,8 @@ export class ProductComponent implements OnInit {
     { id: 6, name: 'LG Monitor', price: 12499, color: 'Black', inStock: 'Available', image: '/assets/products/LGMonitor.jpg' },
     { id: 7, name: 'Samsung Monitor', price: 14499, color: 'Black', inStock: 'Available', image: '/assets/products/SamsungMonitor.jpg' },
     { id: 8, name: 'MacBook Air Laptop', price: 85499, color: 'Silver', inStock: 'Available', image: '/assets/products/MacbookAir.jpg' },
-  ]
+  ];
+
+  @Input() productName: string = '';
+
 }

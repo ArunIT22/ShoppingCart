@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-search',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  searchText: string = "Realme";
+  searchText: string = "";
 
   constructor() { }
 
@@ -17,6 +17,13 @@ export class SearchComponent implements OnInit {
   onInput(eventData: any) {
     console.log(((eventData.target) as HTMLInputElement).value);
     this.searchText = ((eventData.target) as HTMLInputElement).value;
+  }
+
+  //Share the SearchedText from Child to Parent(Container) - @Ouput thru event binding
+  @Output() searchedTextChanged: EventEmitter<string> = new EventEmitter<string>();
+
+  onChanged(){
+    this.searchedTextChanged.emit(this.searchText);
   }
 
 }

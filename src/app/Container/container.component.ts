@@ -8,4 +8,10 @@ import { Component } from '@angular/core'
 
 export class ContainerComponent {
 
+  searchText: string = '';
+
+  onSearch(searchValue: string) {
+    this.searchText = searchValue;
+  }
+
 }
