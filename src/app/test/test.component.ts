@@ -21,7 +21,7 @@ export class TestComponent implements OnInit {
 
   divMsg = "This is a Div Tag = By Property Binding"
 
-  isValid = true;
+  isValid = false;
   hasError = false;
 
   searchedText: string = '';
@@ -48,4 +48,21 @@ export class TestComponent implements OnInit {
     'backgroundColor': this.isValid ? 'yellow' : 'coral'
   }
 
+  cities = [
+    { cityName: 'Mumbai', population: 50000 },
+    { cityName: 'Chennai', population: 35000 },
+    { cityName: 'Bengaluru', population: 40000 },
+    { cityName: 'Hyderabad', population: 40000 },
+    { cityName: 'Delhi', population: 60000 },
+    { cityName: 'Trivandrum', population: 25000 },
+  ];
+
+  // getClass(total: number): string {
+  //   if (total > 40000)
+  //     return 'text-success';
+  //   else
+  //     return 'text-primary';
+  // }
+
+  getClass = (total: number) => total > 40000 ? 'text-success' : 'text-danger';
 }

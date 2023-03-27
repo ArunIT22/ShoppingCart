@@ -38,11 +38,11 @@
 <!-- ngStyle -->
 <!-- <div [style]="{background: 'gray'; border: '2px solid red'}">This is a Style Demo</div> -->
 
-<div
+<!-- <div
   [ngStyle]="{ background: 'yellow', border: '2px solid red', width: '200px' }"
 >
   This is a Style Demo
-</div>
+</div> -->
 
 <!-- <div
   [style.color]="isValid ? 'Green' : 'red'"
@@ -51,16 +51,31 @@
   Multiple Style Demo, Is Valid :{{ isValid }}, Has Error :{{ hasError }}
 </div> -->
 
-<div [ngStyle]="myNgStyles">Multiple Style Demo</div>
+<!-- <div [ngStyle]="myNgStyles">Multiple Style Demo</div> -->
 
 <!-- ------------------------------------------------------------------------------------ -->
 <hr />
 <!-- NgClass -->
-<button
+<!-- <button
   [ngClass]="{
-    'btn btn-primary': isValid,
-    'btn btn-danger': !isValid
+    'btn btn-danger': !isValid,
+    'btn btn-primary': isValid
   }"
 >
   Submit
-</button>
+</button> -->
+
+<!-- ------------------------------------------------------------------------------------ -->
+<!-- NgFor -->
+<ul>
+  <!-- <li
+    *ngFor="let city of cities"
+    [ngClass]="{
+      'text-success': city.population > 40000,
+      'text-danger': city.population <= 40000
+    }"
+  > -->
+  <li *ngFor="let city of cities" [ngClass]="getClass(city.population)">
+    City Name :{{ city.cityName }}, Population :{{ city.population }}
+  </li>
+</ul>
