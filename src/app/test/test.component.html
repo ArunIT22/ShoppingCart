@@ -67,15 +67,36 @@
 
 <!-- ------------------------------------------------------------------------------------ -->
 <!-- NgFor -->
-<ul>
-  <!-- <li
+<!-- <ul> -->
+<!-- <li
     *ngFor="let city of cities"
     [ngClass]="{
       'text-success': city.population > 40000,
       'text-danger': city.population <= 40000
     }"
   > -->
-  <li *ngFor="let city of cities" [ngClass]="getClass(city.population)">
+<!-- <li *ngFor="let city of cities" [ngClass]="getClass(city.population)">
     City Name :{{ city.cityName }}, Population :{{ city.population }}
   </li>
-</ul>
+</ul> -->
+
+<!-- ------------------------------------------------------------------------------------ -->
+<!-- *ngIf -->
+<div *ngIf="hasError">Please provide valid details</div>
+<div *ngIf="hasError == false && isValid == false">
+  Error Occurred, Please provide valid details
+</div>
+<!-- *ngIf Else -->
+<div *ngIf="isValid; else inValid">Thank you for submitting</div>
+<ng-template #inValid>
+  Error while submitting your details. Please check
+</ng-template>
+<hr />
+<!-- *ngIfThenElse -->
+<div *ngIf="isValid; then Valid; else InValid"></div>
+<ng-template #Valid>
+  <strong>Processing your details</strong>
+</ng-template>
+<ng-template #InValid>
+  <strong>Some field have incorrect details</strong>
+</ng-template>

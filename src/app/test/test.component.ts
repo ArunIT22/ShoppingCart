@@ -21,8 +21,8 @@ export class TestComponent implements OnInit {
 
   divMsg = "This is a Div Tag = By Property Binding"
 
-  isValid = false;
-  hasError = false;
+  isValid = true;
+  hasError = true;
 
   searchedText: string = '';
 
@@ -65,4 +65,6 @@ export class TestComponent implements OnInit {
   // }
 
   getClass = (total: number) => total > 40000 ? 'text-success' : 'text-danger';
+
+
 }
