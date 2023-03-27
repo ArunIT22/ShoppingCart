@@ -5,7 +5,7 @@
   {{ message }}
 </h1>
 
-<div [innerText]="divMsg"></div>
+<!-- <div [innerText]="divMsg"></div>
 
 <button class="btn btn-outline-success" [disabled]="isValid">Submit</button>
 <hr />
@@ -19,17 +19,48 @@
   </div>
 </div>
 <h2>{{ searchedText }}</h2>
-<hr />
+<hr /> -->
 <!-- Style Binding -->
-<div [style]="divStyle">This is a Demo for Style Binding</div>
+<!-- <div [style]="divStyle">This is a Demo for Style Binding</div>
 
 <div [style]="isValid ? divStyle : divStyle2">
   This is a Demo for Style Binding. Is Valid :{{ isValid }}
-</div>
+</div> -->
 
 <!--Class Binding-->
-<div class="mt-4">
+<!-- <div class="mt-4">
   <div [className]="'blue'">This is Class Binding Demo</div>
 
   <div [className]="text_BGColor">This is Class Binding Demo</div>
+</div> -->
+<!-- ------------------------------------------------------------------------------------ -->
+<!-- Attribute Directives -->
+<!-- ngStyle -->
+<!-- <div [style]="{background: 'gray'; border: '2px solid red'}">This is a Style Demo</div> -->
+
+<div
+  [ngStyle]="{ background: 'yellow', border: '2px solid red', width: '200px' }"
+>
+  This is a Style Demo
 </div>
+
+<!-- <div
+  [style.color]="isValid ? 'Green' : 'red'"
+  [style.border]="hasError ? '2px solid red' : '2px solid green'"
+>
+  Multiple Style Demo, Is Valid :{{ isValid }}, Has Error :{{ hasError }}
+</div> -->
+
+<div [ngStyle]="myNgStyles">Multiple Style Demo</div>
+
+<!-- ------------------------------------------------------------------------------------ -->
+<hr />
+<!-- NgClass -->
+<button
+  [ngClass]="{
+    'btn btn-primary': isValid,
+    'btn btn-danger': !isValid
+  }"
+>
+  Submit
+</button>

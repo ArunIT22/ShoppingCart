@@ -21,7 +21,8 @@ export class TestComponent implements OnInit {
 
   divMsg = "This is a Div Tag = By Property Binding"
 
-  isValid = false;
+  isValid = true;
+  hasError = false;
 
   searchedText: string = '';
 
@@ -39,5 +40,12 @@ export class TestComponent implements OnInit {
   divStyle2 = "color:green";
 
   text_BGColor: string = "red yellowBG";
+
+  //NgStyle
+  myNgStyles = {
+    'color': this.isValid ? 'green' : 'red',
+    'border': this.hasError ? '2px solid red' : '2px solid green',
+    'backgroundColor': this.isValid ? 'yellow' : 'coral'
+  }
 
 }
