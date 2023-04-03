@@ -1,0 +1,60 @@
+<h2 id="resource-filters">Resource filters</h2>
+<p>Resource filters:</p>
+<ul>
+  <li>
+    Implement either the
+    <a
+      href="/en-us/dotnet/api/microsoft.aspnetcore.mvc.filters.iresourcefilter"
+      class="no-loc"
+      data-linktype="absolute-path"
+      >IResourceFilter</a
+    >
+    or
+    <a
+      href="/en-us/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncresourcefilter"
+      class="no-loc"
+      data-linktype="absolute-path"
+      >IAsyncResourceFilter</a
+    >
+    interface.
+  </li>
+  <li>Execution wraps most of the filter pipeline.</li>
+  <li>
+    Only
+    <a href="#authorization-filters" data-linktype="self-bookmark"
+      >Authorization filters</a
+    >
+    run before resource filters.
+  </li>
+</ul>
+<p>
+  Resource filters are useful to short-circuit most of the pipeline. For
+  example, a caching filter can avoid the rest of the pipeline on a cache hit.
+</p>
+<p>Resource filter examples:</p>
+<ul>
+  <li>
+    <p>
+      <a href="#short-circuiting-resource-filter" data-linktype="self-bookmark"
+        >The short-circuiting resource filter</a
+      >
+      shown previously.
+    </p>
+  </li>
+  <li>
+    <p>
+      <a
+        href="https://github.com/aspnet/Entropy/blob/master/samples/Mvc.FileUpload/Filters/DisableFormValueModelBindingAttribute.cs"
+        data-linktype="external"
+        >DisableFormValueModelBindingAttribute</a
+      >:
+    </p>
+    <ul>
+      <li>Prevents model binding from accessing the form data.</li>
+      <li>
+        Used for large file uploads to prevent the form data from being read
+        into memory.
+      </li>
+    </ul>
+  </li>
+</ul>

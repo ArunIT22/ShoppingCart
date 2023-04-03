@@ -1,0 +1,33 @@
+<h2 id="authorization-filters">Authorization filters</h2>
+<p>Authorization filters:</p>
+<ul>
+  <li>Are the first filters run in the filter pipeline.</li>
+  <li>Control access to action methods.</li>
+  <li>Have a before method, but no after method.</li>
+</ul>
+<p>
+  Custom authorization filters require a custom authorization framework. Prefer
+  configuring the authorization policies or writing a custom authorization
+  policy over writing a custom filter. The built-in authorization filter:
+</p>
+<ul>
+  <li>Calls the authorization system.</li>
+  <li>Does not authorize requests.</li>
+</ul>
+<p>Do <strong>not</strong> throw exceptions within authorization filters:</p>
+<ul>
+  <li>The exception will not be handled.</li>
+  <li>Exception filters will not handle the exception.</li>
+</ul>
+<p>
+  Consider issuing a challenge when an exception occurs in an authorization
+  filter.
+</p>
+<p>
+  Learn more about
+  <a
+    href="../../security/authorization/introduction?view=aspnetcore-6.0"
+    data-linktype="relative-path"
+    >Authorization</a
+  >.
+</p>

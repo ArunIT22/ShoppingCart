@@ -1,0 +1,225 @@
+<h2 id="action-filters">Action filters</h2>
+<p>
+  Action filters do <strong>not</strong> apply to Razor Pages. Razor Pages
+  supports
+  <a
+    href="/en-us/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter"
+    class="no-loc"
+    data-linktype="absolute-path"
+    >IPageFilter</a
+  >
+  and
+  <a
+    href="/en-us/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter"
+    class="no-loc"
+    data-linktype="absolute-path"
+    >IAsyncPageFilter</a
+  >. For more information, see
+  <a
+    href="../../razor-pages/filter?view=aspnetcore-6.0"
+    data-linktype="relative-path"
+    >Filter methods for Razor Pages</a
+  >.
+</p>
+<p>Action filters:</p>
+<ul>
+  <li>
+    Implement either the
+    <a
+      href="/en-us/dotnet/api/microsoft.aspnetcore.mvc.filters.iactionfilter"
+      class="no-loc"
+      data-linktype="absolute-path"
+      >IActionFilter</a
+    >
+    or
+    <a
+      href="/en-us/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncactionfilter"
+      class="no-loc"
+      data-linktype="absolute-path"
+      >IAsyncActionFilter</a
+    >
+    interface.
+  </li>
+  <li>Their execution surrounds the execution of action methods.</li>
+</ul>
+<p>The following code shows a sample action filter:</p>
+<p>
+  The
+  <a
+    href="/en-us/dotnet/api/microsoft.aspnetcore.mvc.filters.actionexecutingcontext"
+    class="no-loc"
+    data-linktype="absolute-path"
+    >ActionExecutingContext</a
+  >
+  provides the following properties:
+</p>
+<ul>
+  <li>
+    <a
+      href="/en-us/dotnet/api/microsoft.aspnetcore.mvc.filters.actionexecutingcontext.actionarguments#microsoft-aspnetcore-mvc-filters-actionexecutingcontext-actionarguments"
+      class="no-loc"
+      data-linktype="absolute-path"
+      >ActionArguments</a
+    >
+    - enables reading the inputs to an action method.
+  </li>
+  <li>
+    <a
+      href="/en-us/dotnet/api/microsoft.aspnetcore.mvc.controller"
+      class="no-loc"
+      data-linktype="absolute-path"
+      >Controller</a
+    >
+    - enables manipulating the controller instance.
+  </li>
+  <li>
+    <a
+      href="/en-us/dotnet/api/microsoft.aspnetcore.mvc.filters.actionexecutingcontext.result"
+      class="no-loc"
+      data-linktype="absolute-path"
+      >Result</a
+    >
+    - setting <code>Result</code> short-circuits execution of the action method
+    and subsequent action filters.
+  </li>
+</ul>
+<p>Throwing an exception in an action method:</p>
+<ul>
+  <li>Prevents running of subsequent filters.</li>
+  <li>
+    Unlike setting <code>Result</code>, is treated as a failure instead of a
+    successful result.
+  </li>
+</ul>
+<p>
+  The
+  <a
+    href="/en-us/dotnet/api/microsoft.aspnetcore.mvc.filters.actionexecutedcontext"
+    class="no-loc"
+    data-linktype="absolute-path"
+    >ActionExecutedContext</a
+  >
+  provides <code>Controller</code> and <code>Result</code> plus the following
+  properties:
+</p>
+<ul>
+  <li>
+    <a
+      href="/en-us/dotnet/api/microsoft.aspnetcore.mvc.filters.actionexecutedcontext.canceled"
+      class="no-loc"
+      data-linktype="absolute-path"
+      >Canceled</a
+    >
+    - True if the action execution was short-circuited by another filter.
+  </li>
+  <li>
+    <a
+      href="/en-us/dotnet/api/microsoft.aspnetcore.mvc.filters.actionexecutedcontext.exception"
+      class="no-loc"
+      data-linktype="absolute-path"
+      >Exception</a
+    >
+    - Non-null if the action or a previously run action filter threw an
+    exception. Setting this property to null:
+    <ul>
+      <li>Effectively handles the exception.</li>
+      <li>
+        <code>Result</code> is executed as if it was returned from the action
+        method.
+      </li>
+    </ul>
+  </li>
+</ul>
+<p>
+  For an <code>IAsyncActionFilter</code>, a call to the
+  <a
+    href="/en-us/dotnet/api/microsoft.aspnetcore.mvc.filters.actionexecutiondelegate"
+    class="no-loc"
+    data-linktype="absolute-path"
+    >ActionExecutionDelegate</a
+  >:
+</p>
+<ul>
+  <li>Executes any subsequent action filters and the action method.</li>
+  <li>Returns <code>ActionExecutedContext</code>.</li>
+</ul>
+<p>
+  To short-circuit, assign
+  <a
+    href="/en-us/dotnet/api/microsoft.aspnetcore.mvc.filters.actionexecutingcontext.result#microsoft-aspnetcore-mvc-filters-actionexecutingcontext-result"
+    class="no-loc"
+    data-linktype="absolute-path"
+    >Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Result</a
+  >
+  to a result instance and don't call <code>next</code> (the
+  <code>ActionExecutionDelegate</code>).
+</p>
+<p>
+  The framework provides an abstract
+  <a
+    href="/en-us/dotnet/api/microsoft.aspnetcore.mvc.filters.actionfilterattribute"
+    class="no-loc"
+    data-linktype="absolute-path"
+    >ActionFilterAttribute</a
+  >
+  that can be subclassed.
+</p>
+<p>The <code>OnActionExecuting</code> action filter can be used to:</p>
+<ul>
+  <li>Validate model state.</li>
+  <li>Return an error if the state is invalid.</li>
+</ul>
+<pre></pre>
+<div class="NOTE">
+  <p>Note</p>
+  <p>
+    Controllers annotated with the <code>[ApiController]</code> attribute
+    automatically validate model state and return a 400 response. For more
+    information, see
+    <a
+      href="../../web-api/?view=aspnetcore-6.0#automatic-http-400-responses"
+      data-linktype="relative-path"
+      >Automatic HTTP 400 responses</a
+    >.
+  </p>
+</div>
+<p>The <code>OnActionExecuted</code> method runs after the action method:</p>
+<ul>
+  <li>
+    And can see and manipulate the results of the action through the
+    <a
+      href="/en-us/dotnet/api/microsoft.aspnetcore.mvc.filters.actionexecutedcontext.result#microsoft-aspnetcore-mvc-filters-actionexecutedcontext-result"
+      class="no-loc"
+      data-linktype="absolute-path"
+      >Result</a
+    >
+    property.
+  </li>
+  <li>
+    <a
+      href="/en-us/dotnet/api/microsoft.aspnetcore.mvc.filters.actionexecutedcontext.canceled#microsoft-aspnetcore-mvc-filters-actionexecutedcontext-canceled"
+      class="no-loc"
+      data-linktype="absolute-path"
+      >Canceled</a
+    >
+    is set to true if the action execution was short-circuited by another
+    filter.
+  </li>
+  <li>
+    <a
+      href="/en-us/dotnet/api/microsoft.aspnetcore.mvc.filters.actionexecutedcontext.exception#microsoft-aspnetcore-mvc-filters-actionexecutedcontext-exception"
+      class="no-loc"
+      data-linktype="absolute-path"
+      >Exception</a
+    >
+    is set to a non-null value if the action or a subsequent action filter threw
+    an exception. Setting <code>Exception</code> to null:
+    <ul>
+      <li>Effectively handles an exception.</li>
+      <li>
+        <code>ActionExecutedContext.Result</code> is executed as if it were
+        returned normally from the action method.
+      </li>
+    </ul>
+  </li>
+</ul>

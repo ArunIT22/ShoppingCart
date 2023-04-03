@@ -1,0 +1,40 @@
+<div class="h2 mt-3">Popular Products</div>
+<hr />
+<!-- <div *ngFor="let p of productNames">
+  <p>{{ p }}</p>
+</div> -->
+<section class="bg-light pt-5 pb-5 shadow-sm">
+  <div class="text-center container py-5">
+    <div class="row card-group">
+      <!-- To display all the card display in same height added 'd-flex align-items-stretch' -->
+      <div
+        class="col-lg-3 mb-2 d-flex align-items-stretch"
+        *ngFor="let p of products"
+      >
+        <div class="card border-2">
+          <img [src]="p.image" class="w-100 card-img-top" />
+          <div class="card-body">
+            <h5 class="card-title">{{ p.name }}</h5>
+            <p class="card-text">Color: {{ p.color }}</p>
+            <p class="card-text">Price :₹ {{ p.price }}</p>
+            <p
+            class="card-text"
+            [ngStyle]="{
+              color: p.isInStock === 'Available' ? 'green' : 'red'
+            }"
+          >
+              {{ p.isInStock }}
+            </p>
+            <button class="btn btn-warning card-link">Details</button>
+            <button
+              class="btn btn-success card-link"
+              *ngIf="p.isInStock === 'Available'"
+            >
+              Buy Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,124 @@
+<div class="content">
+  <h1 id="filters-in-aspnet-core">Filters in ASP.NET Core</h1>
+
+  <div
+    class="display-flex justify-content-space-between align-items-center flex-wrap-wrap page-metadata-container"
+  >
+    <div
+      id="user-feedback"
+      class="margin-block-xxs display-none-print"
+      data-hide-on-archived
+    ></div>
+    <h3 id="filter-types">Filter types</h3>
+    <p>
+      Each filter type is executed at a different stage in the filter pipeline:
+    </p>
+    <ul>
+      <li>
+        <p>
+          <a href="#authorization-filters" data-linktype="self-bookmark"
+            >Authorization filters</a
+          >:
+        </p>
+        <ul>
+          <li>Run first.</li>
+          <li>Determine whether the user is authorized for the request.</li>
+          <li>Short-circuit the pipeline if the request is not authorized.</li>
+        </ul>
+      </li>
+      <li>
+        <p>
+          <a href="#resource-filters" data-linktype="self-bookmark"
+            >Resource filters</a
+          >:
+        </p>
+        <ul>
+          <li>Run after authorization.</li>
+          <li>
+            <a
+              href="/en-us/dotnet/api/microsoft.aspnetcore.mvc.filters.iresourcefilter.onresourceexecuting"
+              class="no-loc"
+              data-linktype="absolute-path"
+              >OnResourceExecuting</a
+            >
+            runs code before the rest of the filter pipeline. For example,
+            <code>OnResourceExecuting</code> runs code before model binding.
+          </li>
+          <li>
+            <a
+              href="/en-us/dotnet/api/microsoft.aspnetcore.mvc.filters.iresourcefilter.onresourceexecuted"
+              class="no-loc"
+              data-linktype="absolute-path"
+              >OnResourceExecuted</a
+            >
+            runs code after the rest of the pipeline has completed.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>
+          <a href="#action-filters" data-linktype="self-bookmark"
+            >Action filters</a
+          >:
+        </p>
+        <ul>
+          <li>Run immediately before and after an action method is called.</li>
+          <li>Can change the arguments passed into an action.</li>
+          <li>Can change the result returned from the action.</li>
+          <li>Are <strong>not</strong> supported in Razor Pages.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div data-moniker="aspnetcore-7.0 aspnetcore-8.0">
+    <ul>
+      <li>
+        <p>
+          <a
+            href="/en-us/aspnet/core/fundamentals/minimal-apis/min-api-filters"
+            data-linktype="absolute-path"
+            >Endpoint filters</a
+          >:
+        </p>
+        <ul>
+          <li>Run immediately before and after an action method is called.</li>
+          <li>Can change the arguments passed into an action.</li>
+          <li>Can change the result returned from the action.</li>
+          <li>Are <strong>not</strong> supported in Razor Pages.</li>
+          <li>
+            Can be invoked on both actions and route handler-based endpoints.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div data-moniker="aspnetcore-6.0 aspnetcore-7.0 aspnetcore-8.0">
+    <ul>
+      <li>
+        <p>
+          <a href="#exception-filters" data-linktype="self-bookmark"
+            >Exception filters</a
+          >
+          apply global policies to unhandled exceptions that occur before the
+          response body has been written to.
+        </p>
+      </li>
+      <li>
+        <p>
+          <a href="#result-filters" data-linktype="self-bookmark"
+            >Result filters</a
+          >:
+        </p>
+        <ul>
+          <li>
+            Run immediately before and after the execution of action results.
+          </li>
+          <li>Run only when the action method executes successfully.</li>
+          <li>
+            Are useful for logic that must surround view or formatter execution.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

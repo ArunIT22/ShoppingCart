@@ -18,10 +18,10 @@
             <p
               class="card-text"
               [ngStyle]="{
-                color: product.inStock === 'Available' ? 'green' : 'red'
+                color: product.inStock === true ? 'green' : 'red'
               }"
             >
-              {{ product.inStock }}
+              {{ product.inStock ? "Available" : "Not Available" }}
             </p>
             <!-- Buttons -->
             <button class="btn btn-warning card-link">Show Details</button>
