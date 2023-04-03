@@ -14,10 +14,10 @@ export class AppComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.activatedRoute.fragment.subscribe((val) => {
-      console.log(val);
-      document.getElementById(val!)?.scrollIntoView({ behavior: 'smooth' });
-    })
+    // this.activatedRoute.fragment.subscribe((val) => {
+    //   console.log(val);
+    //   document.getElementById(val!)?.scrollIntoView({ behavior: 'smooth' });
+    // })
   }
 
 

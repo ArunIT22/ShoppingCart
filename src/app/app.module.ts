@@ -22,6 +22,8 @@ import { LogService } from './services/log.service';
 import { HomeComponent } from './home/home.component';
 import { ProductDetailsComponent } from './product/product-details/product-details.component';
 import { ErrorComponent } from './error/error.component';
+import { ProductRouteGuardService } from './services/product-route-guard.service';
+import { AuthenticationService } from './services/authentication.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,7 @@ import { ErrorComponent } from './error/error.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [ProductService, LogService],
+  providers: [ProductService, LogService, ProductRouteGuardService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
