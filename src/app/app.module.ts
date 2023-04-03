@@ -21,6 +21,7 @@ import { ProductService } from './services/product.service';
 import { LogService } from './services/log.service';
 import { HomeComponent } from './home/home.component';
 import { ProductDetailsComponent } from './product/product-details/product-details.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ProductDetailsComponent } from './product/product-details/product-detai
     ResourceFilterComponent,
     AuthFilterComponent,
     HomeComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    ErrorComponent
   ],
   imports: [
     FormsModule,
