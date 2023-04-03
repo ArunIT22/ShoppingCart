@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Product } from '../services/product';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -11,7 +12,7 @@ export class ProductComponent implements OnInit {
 
   products: Product[] = [];
 
-  constructor(private productService : ProductService) { }
+  constructor(private productService: ProductService, private route: Router) { }
 
   ngOnInit(): void {
     this.products = this.productService.getProducts();
@@ -29,5 +30,9 @@ export class ProductComponent implements OnInit {
   // ];
 
   @Input() productName: string = '';
+
+  goToHome() {
+    this.route.navigate(['Home']);
+  }
 
 }

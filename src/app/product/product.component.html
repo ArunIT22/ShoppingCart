@@ -24,7 +24,12 @@
               {{ product.inStock ? "Available" : "Not Available" }}
             </p>
             <!-- Buttons -->
-            <button class="btn btn-warning card-link">Show Details</button>
+            <button
+              class="btn btn-warning card-link"
+              routerLink="/Product/detail/{{ product.id }}"
+            >
+              Show Details
+            </button>
             <button class="btn btn-primary card-link">Buy Now</button>
           </div>
         </div>
@@ -36,5 +41,6 @@
   <!-- Relative Path -->
   <!-- <a routerLink="Home">Back to Home</a> -->
   <!-- Absolute Path -->
-  <a routerLink="/Home">Back to Home</a>
+  <!-- <a routerLink="/Home">Back to Home</a> -->
+  <button class="btn btn-link" (click)="goToHome()">Back to Home</button>
 </div>
