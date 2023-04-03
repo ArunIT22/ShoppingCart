@@ -23,7 +23,10 @@
                 </div>
               </div>
               <div class="mt-4 mb-3">
-                <h5 class="text-uppercase">{{ product?.name }}</h5>
+                <h5 *ngIf="!editMode" class="text-uppercase">{{ product?.name }}</h5>
+                <div *ngIf="editMode">
+                  <input type="text" class="form-control" value="{{ product?.name }}">
+                </div>
                 <span class="text-uppercase text-muted brand">
                   {{ product?.color }}
                 </span>
@@ -40,6 +43,21 @@
               <div class="cart mt-4 align-items-center">
                 <button class="btn btn-danger text-uppercase mr-2 px-4">
                   Add to cart
+                </button>
+                <!-- Implementin Query Parameter -->
+                <!-- <button
+                  class="btn btn-success text-uppercase"
+                  routerLink="/Product/detail/{{ product?.id }}"
+                  [queryParams]="{ edit: true }"
+                >
+                  Edit
+                </button> -->
+                <!-- Query Param - Programmatically -->
+                <button
+                  class="btn btn-success text-uppercase"
+                  (click)="enableEditMode()"
+                >
+                  Edit
                 </button>
               </div>
             </div>

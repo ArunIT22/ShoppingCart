@@ -12,6 +12,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   productId: any;
   product!: Product | undefined;
   mySubscription: any;
+  editMode: boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute, private service: ProductService, private route: Router) { }
 
@@ -27,8 +28,16 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       this.product = this.service.getProducts().find(x => x.id == this.productId);
       this.product ?? this.route.navigate(['404']);
     })
-    // console.log(this.productId);
 
+    this.activatedRoute.queryParamMap.subscribe((val) => {
+      this.editMode = Boolean(val.get("edit"));
+      console.log(this.editMode);
+    })
+    // console.log(this.productId);
+  }
+
+  enableEditMode() {
+    this.route.navigate(['/Product/detail', this.productId], { queryParams: { edit: true } });
   }
 
   ngOnDestroy(): void {
