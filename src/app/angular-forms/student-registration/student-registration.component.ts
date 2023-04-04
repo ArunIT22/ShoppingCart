@@ -24,5 +24,29 @@ export class StudentRegistrationComponent implements OnInit {
 
   onSubmit() {
     console.log(this.regForm);
+
+    if(this.regForm.valid){
+      console.log(this.regForm.value);
+      this.regForm.reset();
+    }
+  }
+
+  addDefaultValues() {
+    // this.regForm.setValue({
+    //   FullName: {
+    //     firstName: 'Bathri',
+    //     lastName: 'Pavan'
+    //   },
+    //   email: '',
+    //   city: '',
+    //   gender: ''
+    // });
+
+    this.regForm.form.patchValue({
+      FullName: {
+        firstName: 'Bathri',
+        lastName: 'Pavan'
+      }
+    })
   }
 }
