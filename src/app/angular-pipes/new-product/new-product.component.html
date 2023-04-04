@@ -1,0 +1,39 @@
+<div class="row mt-3">
+  <div class="col-lg-6">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search by Category"
+      [(ngModel)]="filteredText"
+    />
+  </div>
+</div>
+<div class="row mt-4">
+  <div class="col-lg-8">
+    <table class="table table-bordered table-hover">
+      <thead class="bg-info">
+        <tr>
+          <th>Product Name</th>
+          <th>Category</th>
+          <th>List Price</th>
+          <th>Discount</th>
+          <th>Final Price</th>
+          <th>Added Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of products | categoryFilter : filteredText">
+          <td>{{ p.name | titlecase }}</td>
+          <td>{{ p.category | uppercase }}</td>
+          <td>{{ p.price | number : "3.2-2" }}</td>
+          <td>{{ p.discount }}%</td>
+          <td>
+            {{ p.price - (p.price * p.discount) / 100 | currency : "INR" }}
+          </td>
+          <!-- <td>{{ p.addedDate | date : 'fullDate'}}</td> -->
+          <td>{{ p.addedDate | date : "dd/MM/yyy" }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

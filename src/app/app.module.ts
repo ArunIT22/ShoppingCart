@@ -24,6 +24,9 @@ import { ProductDetailsComponent } from './product/product-details/product-detai
 import { ErrorComponent } from './error/error.component';
 import { ProductRouteGuardService } from './services/product-route-guard.service';
 import { AuthenticationService } from './services/authentication.service';
+import { NewProductService } from './angular-pipes/product.services';
+import { NewProductComponent } from './angular-pipes/new-product/new-product.component';
+import { CategoryFilterPipe } from './angular-pipes/category-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -43,14 +46,16 @@ import { AuthenticationService } from './services/authentication.service';
     AuthFilterComponent,
     HomeComponent,
     ProductDetailsComponent,
-    ErrorComponent
+    ErrorComponent,
+    NewProductComponent,
+    CategoryFilterPipe,
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [ProductService, LogService, ProductRouteGuardService, AuthenticationService],
+  providers: [ProductService, LogService, ProductRouteGuardService, AuthenticationService, NewProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
