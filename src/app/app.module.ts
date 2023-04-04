@@ -27,6 +27,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { NewProductService } from './angular-pipes/product.services';
 import { NewProductComponent } from './angular-pipes/new-product/new-product.component';
 import { CategoryFilterPipe } from './angular-pipes/category-filter.pipe';
+import { StudentRegistrationComponent } from './angular-forms/student-registration/student-registration.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { CategoryFilterPipe } from './angular-pipes/category-filter.pipe';
     ErrorComponent,
     NewProductComponent,
     CategoryFilterPipe,
+    StudentRegistrationComponent,
   ],
   imports: [
     FormsModule,
