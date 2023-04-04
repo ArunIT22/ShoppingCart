@@ -8,6 +8,9 @@
     />
   </div>
 </div>
+<div>
+  <h2>Total Product : {{ totalProducts | async }}</h2>
+</div>
 <div class="row mt-4">
   <div class="col-lg-8">
     <table class="table table-bordered table-hover">
@@ -25,15 +28,31 @@
         <tr *ngFor="let p of products | categoryFilter : filteredText">
           <td>{{ p.name | titlecase }}</td>
           <td>{{ p.category | uppercase }}</td>
-          <td>{{ p.price | number : "3.2-2" }}</td>
+          <!-- <td>{{ p.price | number : "3.2-2" }}</td> -->
+          <td>
+            <input
+              type="number"
+              class="form-control"
+              value="p.price"
+              [(ngModel)]="p.price"
+            />
+          </td>
           <td>{{ p.discount }}%</td>
           <td>
-            {{ p.price - (p.price * p.discount) / 100 | currency : "INR" }}
+            {{
+              p.price - (p.price * p.discount) / 100
+                | currency : "INR" : "symbol" : "3.2-2"
+            }}
           </td>
           <!-- <td>{{ p.addedDate | date : 'fullDate'}}</td> -->
           <td>{{ p.addedDate | date : "dd/MM/yyy" }}</td>
         </tr>
       </tbody>
     </table>
+    <div>
+      <button class="btn btn-primary" (click)="addProduct()">
+        Add Product
+      </button>
+    </div>
   </div>
 </div>
